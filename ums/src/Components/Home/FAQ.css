@@ -1,0 +1,364 @@
+/* 
+====================================
+STEP 9: FAQ CSS STYLES
+====================================
+Styling for the FAQ component including:
+- Search functionality with filters
+- Accordion-style questions with smooth animations
+- Category organization and highlighting
+- Contact help section styling
+*/
+
+.faq-section {
+	background: #ffffff;
+	min-height: 100vh;
+}
+
+/* Section Header Styles */
+.section-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #2c3e50;
+	margin-bottom: 1rem;
+}
+
+.section-subtitle {
+	font-size: 1.1rem;
+	color: #6c757d;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+/* Search Card Styles */
+.search-card {
+	border: none;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	margin-bottom: 2rem;
+}
+
+.search-input {
+	border: 1px solid #dee2e6;
+	padding: 0.75rem;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.search-input:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.category-select {
+	border: 1px solid #dee2e6;
+	padding: 0.75rem;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.category-select:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* FAQ Category Styles */
+.faq-category {
+	margin-bottom: 2rem;
+}
+
+.category-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #007bff;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #007bff;
+	display: inline-block;
+}
+
+/* Accordion Styles */
+.accordion-item {
+	border: 1px solid #dee2e6;
+	border-radius: 10px !important;
+	margin-bottom: 0.5rem;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header {
+	border-radius: 10px !important;
+}
+
+.accordion-button {
+	background: #f8f9fa;
+	border: none;
+	color: #2c3e50;
+	font-weight: 600;
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+	border-radius: 10px !important;
+	transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+	background: #007bff;
+	color: white;
+	box-shadow: none;
+}
+
+.accordion-button:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.accordion-button::after {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+	transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+	transform: rotate(180deg);
+}
+
+.accordion-body {
+	background: white;
+	color: #2c3e50;
+	font-size: 1rem;
+	line-height: 1.6;
+	padding: 1.5rem;
+	border-top: 1px solid #dee2e6;
+}
+
+/* No Results Styles */
+.no-results {
+	text-align: center;
+	padding: 3rem 2rem;
+	color: #6c757d;
+}
+
+.no-results-icon {
+	color: #007bff;
+	margin-bottom: 1rem;
+	opacity: 0.5;
+}
+
+.no-results-title {
+	color: #2c3e50;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.no-results-text {
+	margin-bottom: 2rem;
+}
+
+/* Contact Help Card */
+.contact-help-card {
+	border: none;
+	background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+	color: white;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.help-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.help-text {
+	font-size: 1rem;
+	opacity: 0.9;
+	line-height: 1.6;
+}
+
+.contact-method {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.contact-icon {
+	font-size: 2rem;
+	color: #ffc107;
+	margin-bottom: 1rem;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 1rem;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-info strong {
+	display: block;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.contact-info p {
+	margin: 0;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+/* Animation Effects */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.faq-category {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+.accordion-item {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover Effects */
+.accordion-item {
+	transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+	transform: translateX(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.section-title {
+		font-size: 2rem;
+	}
+
+	.search-card .row {
+		flex-direction: column;
+	}
+
+	.search-card .col-md-8 {
+		margin-bottom: 1rem;
+	}
+
+	.category-title {
+		font-size: 1.3rem;
+	}
+
+	.accordion-button {
+		padding: 0.75rem 1rem;
+		font-size: 0.95rem;
+	}
+
+	.accordion-body {
+		padding: 1rem;
+		font-size: 0.95rem;
+	}
+
+	.contact-method {
+		margin-bottom: 2rem;
+	}
+
+	.contact-icon {
+		width: 50px;
+		height: 50px;
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.faq-section {
+		padding: 2rem 0;
+	}
+
+	.section-title {
+		font-size: 1.75rem;
+	}
+
+	.accordion-button {
+		padding: 0.75rem;
+		font-size: 0.9rem;
+	}
+
+	.accordion-body {
+		padding: 1rem 0.75rem;
+	}
+
+	.help-title {
+		font-size: 1.25rem;
+	}
+
+	.contact-help-card .card-body {
+		padding: 1.5rem;
+	}
+}
+
+/* Print Styles */
+@media print {
+	.search-card,
+	.contact-help-card {
+		background: white !important;
+		color: black !important;
+	}
+
+	.accordion-button {
+		background: white !important;
+		color: black !important;
+	}
+
+	.accordion-button::after {
+		display: none;
+	}
+
+	.accordion-body {
+		display: block !important;
+	}
+}
+
+/* Accessibility */
+.accordion-button:focus {
+	outline: 2px solid #007bff;
+	outline-offset: 2px;
+}
+
+/* Dark mode support (if implemented) */
+@media (prefers-color-scheme: dark) {
+	.faq-section {
+		background: #1a1a1a;
+		color: white;
+	}
+
+	.section-title {
+		color: white;
+	}
+
+	.accordion-item {
+		background: #2d2d2d;
+		border-color: #444;
+	}
+
+	.accordion-button {
+		background: #3d3d3d;
+		color: white;
+		border-color: #444;
+	}
+
+	.accordion-body {
+		background: #2d2d2d;
+		color: white;
+		border-color: #444;
+	}
+}
