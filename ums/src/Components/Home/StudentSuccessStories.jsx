@@ -1,14 +1,3 @@
-/* 
-====================================
-STEP 8: STUDENT SUCCESS STORIES CAROUSEL
-====================================
-This component displays:
-- Interactive carousel of student success stories
-- Student photos, achievements, and testimonials
-- Automatic slideshow with manual controls
-- Different categories of success stories
-*/
-
 import React, { useState, useEffect } from "react";
 import {
 	Container,

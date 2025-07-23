@@ -1,14 +1,3 @@
-/* 
-====================================
-STEP 6: NEWS & HIGHLIGHTS CSS STYLES
-====================================
-Styling for the news and highlights component including:
-- Achievement cards with icons and colors
-- News article cards with featured highlighting
-- Tab navigation for different news categories
-- Responsive grid layouts
-*/
-
 .news-section {
 	background: #ffffff;
 	min-height: 100vh;
@@ -162,12 +151,7 @@ Styling for the news and highlights component including:
 	z-index: 1;
 }
 
-.news-views {
-	display: flex;
-	align-items: center;
-	color: #6c757d;
-	font-size: 0.85rem;
-}
+
 
 .news-title-card {
 	font-size: 1.1rem;

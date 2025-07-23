@@ -1,23 +1,12 @@
-/* 
-====================================
-STEP 2: NAVBAR STYLING
-====================================
-Custom styles for the navigation bar:
-- Colors and typography
-- Hover effects
-- Responsive behavior
-- Professional appearance
-*/
-
 /* Main navbar styling */
 .custom-navbar {
-	background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%) !important;
+	background: linear-gradient(135deg, #2c503d 0%, #3498db 100%);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	padding: 1rem 0;
 	z-index: 1000;
 }
 
-/* University brand/logo styling */
+/* University logo styling */
 .custom-navbar .navbar-brand {
 	font-size: 1.5rem;
 	font-weight: 700;
@@ -26,20 +15,20 @@ Custom styles for the navigation bar:
 
 .custom-navbar .navbar-brand:hover {
 	transform: scale(1.05);
-	color: #f8f9fa !important;
+	color: #f8f9fa ;
 }
 
-/* Navigation items styling */
+/* Navigation components styling */
 .nav-item {
 	font-weight: 500;
 	margin: 0 0.5rem;
-	padding: 0.5rem 1rem !important;
+	padding: 0.5rem 1rem;
 	border-radius: 25px;
 	transition: all 0.3s ease;
 	position: relative;
 }
 
-/* Hover effects for navigation items */
+/* Hover effects  on navigation items */
 .nav-item:hover {
 	background-color: rgba(255, 255, 255, 0.1);
 	transform: translateY(-2px);

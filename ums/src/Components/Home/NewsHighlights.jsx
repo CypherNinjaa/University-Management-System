@@ -1,13 +1,3 @@
-/* 
-====================================
-STEP 6: NEWS & HIGHLIGHTS COMPONENT
-====================================
-This component displays:
-- Latest university news and announcements
-- Featured achievements and awards
-- Press releases and media coverage
-- Card-based responsive layout
-*/
 
 import React, { useState } from "react";
 import {
@@ -40,7 +30,7 @@ const NewsHighlights = () => {
 				"Our university has been recognized as the leading research institution for the third consecutive year...",
 			date: "2025-07-20",
 			image: null, // Can add image URLs here
-			views: 1250,
+			
 			featured: true,
 		},
 		{
@@ -51,7 +41,7 @@ const NewsHighlights = () => {
 				"The revolutionary learning space features AI-powered study assistants and collaborative zones...",
 			date: "2025-07-18",
 			image: null,
-			views: 890,
+		
 			featured: false,
 		},
 		{
@@ -62,7 +52,6 @@ const NewsHighlights = () => {
 				"Faculty team develops new solar panel technology that increases efficiency by 40%...",
 			date: "2025-07-15",
 			image: null,
-			views: 2100,
 			featured: true,
 		},
 		{
@@ -73,7 +62,7 @@ const NewsHighlights = () => {
 				"Distinguished faculty member recognized for groundbreaking work in molecular biology...",
 			date: "2025-07-12",
 			image: null,
-			views: 3500,
+			
 			featured: true,
 		},
 	]);
@@ -201,10 +190,7 @@ const NewsHighlights = () => {
 														<Badge bg={getCategoryColor(newsItem.category)}>
 															{newsItem.category}
 														</Badge>
-														<div className="news-views">
-															<FaEye className="me-1" />
-															{newsItem.views}
-														</div>
+														
 													</div>
 
 													<h5 className="news-title-card">{newsItem.title}</h5>
@@ -259,10 +245,7 @@ const NewsHighlights = () => {
 														<Badge bg={getCategoryColor(newsItem.category)}>
 															{newsItem.category}
 														</Badge>
-														<div className="news-views">
-															<FaEye className="me-1" />
-															{newsItem.views}
-														</div>
+														
 													</div>
 
 													<h5 className="news-title-card">{newsItem.title}</h5>
@@ -317,10 +300,7 @@ const NewsHighlights = () => {
 														<Badge bg={getCategoryColor(newsItem.category)}>
 															{newsItem.category}
 														</Badge>
-														<div className="news-views">
-															<FaEye className="me-1" />
-															{newsItem.views}
-														</div>
+														
 													</div>
 
 													<h5 className="news-title-card">{newsItem.title}</h5>

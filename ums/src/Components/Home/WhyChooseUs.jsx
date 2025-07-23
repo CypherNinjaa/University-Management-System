@@ -1,14 +1,3 @@
-/* 
-====================================
-STEP 7: WHY CHOOSE US COMPONENT
-====================================
-This component highlights:
-- Key benefits and advantages of the university
-- Statistics and achievements
-- Student testimonials quotes
-- Visual icons and engaging animations
-*/
-
 import React from "react";
 import { Container, Row, Col, Card, ProgressBar } from "react-bootstrap";
 import {

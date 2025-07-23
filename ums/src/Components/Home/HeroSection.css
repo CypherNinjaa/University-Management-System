@@ -1,14 +1,3 @@
-/* 
-====================================
-STEP 4: HERO SECTION STYLING
-====================================
-Styles for the main landing section:
-- Background gradients and images
-- Typography and spacing
-- Animation effects
-- Responsive design
-*/
-
 /* Main hero section with gradient background */
 .hero-section {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -119,12 +108,6 @@ Styles for the main landing section:
 	animation: fadeInRight 1s ease-out 0.8s both;
 }
 
-.hero-image-placeholder {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
 .university-visual {
 	text-align: center;
@@ -150,7 +133,7 @@ Styles for the main landing section:
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 3;
-	animation: bounce 2s infinite;
+	animation: bounce 2.4s infinite;
 }
 
 .scroll-arrow {
@@ -162,7 +145,7 @@ Styles for the main landing section:
 	transform: rotate(45deg);
 }
 
-/* Animations */
+/* Animations generated from claude sonnet 4 */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;

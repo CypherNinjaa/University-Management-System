@@ -1,26 +1,17 @@
-/* 
-====================================
-STEP 1: NAVIGATION BAR COMPONENT
-====================================
-This component creates the main navigation header with:
-- University logo
-- Navigation menu items (Home, Programs, Faculty, etc.)
-- Responsive design for mobile and desktop
-- Login button
-*/
-
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { FaUniversity, FaBars } from "react-icons/fa";
-import "./Navbar.css";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";	// Importing  components from react-bootstrap
+import { FaUniversity, FaBars } from "react-icons/fa";		//this is for icons
+import "./Navbar.css";		//custom css for styling
 
+
+//mobile toogle
 const NavigationBar = () => {
-	// State for mobile menu toggle
 	const [expanded, setExpanded] = useState(false);
 
-	// Handle navigation link clicks
+	// navigation handler when a nav item is clicked
+	// This will close the mobile menu when an item is clicked
 	const handleNavClick = () => {
-		setExpanded(false); // Close mobile menu when item is clicked
+		setExpanded(false);
 	};
 
 	return (
@@ -33,7 +24,7 @@ const NavigationBar = () => {
 			expanded={expanded}
 		>
 			<Container>
-				{/* LOGO SECTION - University branding */}
+				{/* logo  */}
 				<Navbar.Brand href="#home" className="d-flex align-items-center">
 					<FaUniversity className="me-2" size={30} />
 					<span className="fw-bold">EduVerse University</span>
@@ -50,7 +41,7 @@ const NavigationBar = () => {
 				{/* NAVIGATION MENU ITEMS */}
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mx-auto">
-						{/* Each Nav.Link represents a main section of the website */}
+						{/* link to be added of each pages */}
 						<Nav.Link
 							href="#home"
 							onClick={handleNavClick}
@@ -95,7 +86,7 @@ const NavigationBar = () => {
 						</Nav.Link>
 					</Nav>
 
-					{/* LOGIN BUTTON - Positioned on the right */}
+					{/* LOGIN BUTTON  on the right side */}
 					<Nav>
 						<Button
 							variant="outline-light"
