@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
 	FaUniversity,
 	FaMapMarkerAlt,
@@ -34,12 +35,12 @@ const Footer = () => {
 
 	// Quick links data
 	const quickLinks = [
-		{ name: "Admissions", href: "#admissions" },
-		{ name: "Academic Programs", href: "#programs" },
-		{ name: "Student Life", href: "#student-life" },
-		{ name: "Research", href: "#research" },
-		{ name: "Faculty", href: "#faculty" },
-		{ name: "Alumni", href: "#alumni" },
+		{ name: "Admissions", href: "/programs" },
+		{ name: "Academic Programs", href: "/programs" },
+		{ name: "Student Life", href: "/#student-life" },
+		{ name: "Research", href: "/#research" },
+		{ name: "Faculty", href: "/faculty" },
+		{ name: "Alumni", href: "/#alumni" },
 	];
 
 	const studentResources = [
@@ -52,12 +53,12 @@ const Footer = () => {
 	];
 
 	const aboutLinks = [
-		{ name: "About Us", href: "#about" },
-		{ name: "Mission & Vision", href: "#mission" },
-		{ name: "Leadership", href: "#leadership" },
-		{ name: "News & Events", href: "#news" },
-		{ name: "Campus Map", href: "#map" },
-		{ name: "Contact Us", href: "#contact" },
+		{ name: "About Us", href: "/about" },
+		{ name: "Mission & Vision", href: "/about#mission" },
+		{ name: "Leadership", href: "/about#leadership" },
+		{ name: "News & Events", href: "/#news" },
+		{ name: "Campus Map", href: "/about#campus" },
+		{ name: "Contact Us", href: "/contact" },
 	];
 
 	return (
@@ -107,9 +108,15 @@ const Footer = () => {
 							<ul className="footer-links">
 								{quickLinks.map((link, index) => (
 									<li key={index}>
-										<a href={link.href} className="footer-link">
-											{link.name}
-										</a>
+										{link.href.startsWith("/") ? (
+											<Link to={link.href} className="footer-link">
+												{link.name}
+											</Link>
+										) : (
+											<a href={link.href} className="footer-link">
+												{link.name}
+											</a>
+										)}
 									</li>
 								))}
 							</ul>
