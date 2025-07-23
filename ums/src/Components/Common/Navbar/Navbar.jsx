@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";	// Importing  components from react-bootstrap
-import { FaUniversity, FaBars } from "react-icons/fa";		//this is for icons
-import "./Navbar.css";		//custom css for styling
-
+import { Navbar, Nav, Container, Button } from "react-bootstrap"; // Importing  components from react-bootstrap
+import { Link } from "react-router-dom"; // React Router for navigation
+import { FaUniversity, FaBars } from "react-icons/fa"; //this is for icons
+import "./Navbar.css"; //custom css for styling
 
 //mobile toogle
 const NavigationBar = () => {
@@ -25,7 +25,7 @@ const NavigationBar = () => {
 		>
 			<Container>
 				{/* logo  */}
-				<Navbar.Brand href="#home" className="d-flex align-items-center">
+				<Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
 					<FaUniversity className="me-2" size={30} />
 					<span className="fw-bold">EduVerse University</span>
 				</Navbar.Brand>
@@ -43,21 +43,24 @@ const NavigationBar = () => {
 					<Nav className="mx-auto">
 						{/* link to be added of each pages */}
 						<Nav.Link
-							href="#home"
+							as={Link}
+							to="/"
 							onClick={handleNavClick}
 							className="nav-item"
 						>
 							Home
 						</Nav.Link>
 						<Nav.Link
-							href="#programs"
+							as={Link}
+							to="/programs"
 							onClick={handleNavClick}
 							className="nav-item"
 						>
 							Programs
 						</Nav.Link>
 						<Nav.Link
-							href="#faculty"
+							as={Link}
+							to="/faculty"
 							onClick={handleNavClick}
 							className="nav-item"
 						>
@@ -71,14 +74,16 @@ const NavigationBar = () => {
 							Student Success Stories
 						</Nav.Link>
 						<Nav.Link
-							href="#about"
+							as={Link}
+							to="/about"
 							onClick={handleNavClick}
 							className="nav-item"
 						>
 							About
 						</Nav.Link>
 						<Nav.Link
-							href="#contact"
+							as={Link}
+							to="/contact"
 							onClick={handleNavClick}
 							className="nav-item"
 						>
