@@ -1,15 +1,3 @@
-/* 
-====================================
-STEP 10: FOOTER COMPONENT
-====================================
-This component includes:
-- University information and contact details
-- Quick links to important pages
-- Social media links
-- Newsletter signup
-- Copyright and legal information
-*/
-
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import {
