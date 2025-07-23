@@ -1,14 +1,3 @@
-/* 
-====================================
-STEP 9: FAQ (FREQUENTLY ASKED QUESTIONS) COMPONENT
-====================================
-This component displays:
-- Collapsible accordion for frequently asked questions
-- Organized by categories (Admissions, Academics, Campus Life, etc.)
-- Search functionality for finding specific questions
-- Contact information for additional help
-*/
-
 import React, { useState } from "react";
 import {
 	Container,
@@ -273,34 +262,39 @@ const FAQ = () => {
 						<Card className="contact-help-card">
 							<Card.Body>
 								<Row>
-									<Col lg={6} className="mb-4 mb-lg-0">
+									<Col
+										lg={6}
+										className="mb-4 mb-lg-0 d-flex flex-column align-items-center justify-content-center"
+									>
+										<img
+											src="https://pwskills.com/images/accountImage/leadform/man.webp"
+											alt="Contact Help"
+											className="img-fluid rounded mb-3"
+											style={{ maxWidth: "220px", height: "auto" }}
+										/>
 										<h4 className="help-title">Still have questions?</h4>
-										<p className="help-text">
-											Our admissions and student services teams are here to help
-											you with any questions not covered above.
-										</p>
 									</Col>
 									<Col lg={6}>
 										<Row>
-											<Col md={4} className="text-center mb-3">
+											<Col md={4} className="text-center mx-8">
 												<div className="contact-method">
 													<FaPhone className="contact-icon" />
 													<div className="contact-info">
 														<strong>Call Us</strong>
-														<p>(555) 123-4567</p>
+														<a href="tel:+15551234567" style={{ textDecoration: "none", color: "inherit" }}>(555) 123-4567</a>
 													</div>
 												</div>
 											</Col>
-											<Col md={4} className="text-center mb-3">
+											<Col md={4} className="text-center mx-8">
 												<div className="contact-method">
 													<FaEnvelope className="contact-icon" />
 													<div className="contact-info">
 														<strong>Email Us</strong>
-														<p>info@eduverse.edu</p>
+														<a href="mailto:info@eduverse.edu" style={{ textDecoration: "none", color: "inherit" }}>info@eduverse.edu</a>
 													</div>
 												</div>
 											</Col>
-											<Col md={4} className="text-center mb-3">
+											<Col md={4} className="text-center mx-8">
 												<div className="contact-method">
 													<FaMapMarkerAlt className="contact-icon" />
 													<div className="contact-info">
