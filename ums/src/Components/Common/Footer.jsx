@@ -13,6 +13,7 @@ import {
 	FaYoutube,
 	FaPaperPlane,
 	FaHeart,
+	FaGithub,
 } from "react-icons/fa";
 import "./Footer.css";
 
@@ -89,15 +90,19 @@ const Footer = () => {
 								<h5 className="contact-title">Get in Touch</h5>
 								<div className="contact-item">
 									<FaMapMarkerAlt className="contact-icon" />
-									<span>123 University Avenue, Education City, EC 12345</span>
+									<span>EduVerse University,
+										Near Gandhi Maidan,
+										Patna, Bihar 800001
+										India
+										</span>
 								</div>
 								<div className="contact-item">
 									<FaPhone className="contact-icon" />
-									<span>(555) 123-4567</span>
+									<span>+91(8294447219)</span>
 								</div>
 								<div className="contact-item">
 									<FaEnvelope className="contact-icon" />
-									<span>info@eduverse.edu</span>
+									<span>hariom.21242@gmail.com</span>
 								</div>
 							</div>
 						</Col>
@@ -186,35 +191,35 @@ const Footer = () => {
 								<h6 className="social-title">Follow Us</h6>
 								<div className="social-links">
 									<a
-										href="#"
+										href="https://www.facebook.com/profile.php?id=100026762315297"
 										className="social-link facebook"
 										aria-label="Facebook"
 									>
 										<FaFacebookF />
 									</a>
 									<a
-										href="#"
-										className="social-link twitter"
-										aria-label="Twitter"
+										href="https://github.com/CypherNinjaa"
+										className="social-link GitHub"
+										aria-label="GitHub"
 									>
-										<FaTwitter />
+										<FaGithub />
 									</a>
 									<a
-										href="#"
+										href="https://www.instagram.com/offical_hariom_2004/"
 										className="social-link instagram"
 										aria-label="Instagram"
 									>
 										<FaInstagram />
 									</a>
 									<a
-										href="#"
+										href="https://www.linkedin.com/in/vikashintech"
 										className="social-link linkedin"
 										aria-label="LinkedIn"
 									>
 										<FaLinkedinIn />
 									</a>
 									<a
-										href="#"
+										href="https://www.youtube.com/@hariomkumar21242"
 										className="social-link youtube"
 										aria-label="YouTube"
 									>

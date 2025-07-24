@@ -45,7 +45,7 @@ const Contact = () => {
 		{
 			id: 1,
 			name: "Admissions Office",
-			phone: "+1-555-ADMIT (555-236-4874)",
+			phone: "+91(8294447219)",
 			email: "admissions@eduverse.edu",
 			hours: "Mon-Fri: 8:00 AM - 6:00 PM",
 			location: "Administration Building, Room 101",
@@ -53,7 +53,7 @@ const Contact = () => {
 		{
 			id: 2,
 			name: "Academic Affairs",
-			phone: "+1-555-ACADEM (555-222-3364)",
+			phone: "+91(7050010897)",
 			email: "academics@eduverse.edu",
 			hours: "Mon-Fri: 9:00 AM - 5:00 PM",
 			location: "Academic Building, Room 205",
@@ -61,7 +61,7 @@ const Contact = () => {
 		{
 			id: 3,
 			name: "Student Services",
-			phone: "+1-555-STUDENT (555-788-3368)",
+			phone: "+91(8252213697)",
 			email: "students@eduverse.edu",
 			hours: "Mon-Fri: 8:00 AM - 7:00 PM",
 			location: "Student Center, Room 150",
@@ -69,7 +69,7 @@ const Contact = () => {
 		{
 			id: 4,
 			name: "Financial Aid",
-			phone: "+1-555-FINAID (555-346-2434)",
+			phone: "+91(9199697225)",
 			email: "finaid@eduverse.edu",
 			hours: "Mon-Fri: 9:00 AM - 4:00 PM",
 			location: "Financial Services Building, Room 120",
@@ -77,7 +77,7 @@ const Contact = () => {
 		{
 			id: 5,
 			name: "International Office",
-			phone: "+1-555-GLOBAL (555-456-2255)",
+			phone: "+91(8294447219)",
 			email: "international@eduverse.edu",
 			hours: "Mon-Fri: 9:00 AM - 5:00 PM",
 			location: "International Center, Room 301",
@@ -85,7 +85,7 @@ const Contact = () => {
 		{
 			id: 6,
 			name: "IT Support",
-			phone: "+1-555-TECHHELP (555-832-4435)",
+			phone: "+91 (9199697225)",
 			email: "itsupport@eduverse.edu",
 			hours: "24/7 Support Available",
 			location: "Technology Center, Room 110",
@@ -286,11 +286,13 @@ const Contact = () => {
 											<p className="mb-0">
 												EduVerse University
 												<br />
-												123 Education Boulevard
+												Near Gandhi Maidan,
 												<br />
-												Academic City, State 12345
+												Patna, Bihar 800001
 												<br />
-												United States
+												India
+												
+									
 											</p>
 										</div>
 									</div>
@@ -299,8 +301,8 @@ const Contact = () => {
 										<FaPhone className="contact-icon text-success" />
 										<div>
 											<strong>Main Phone</strong>
-											<p className="mb-0">+1-555-EDUVERSE</p>
-											<p className="mb-0">(555-338-3773)</p>
+											<p className="mb-0">+91-8294447219</p>
+											<p className="mb-0">+91(9199697225)</p>
 										</div>
 									</div>
 
@@ -308,14 +310,15 @@ const Contact = () => {
 										<FaEnvelope className="contact-icon text-success" />
 										<div>
 											<strong>General Email</strong>
-											<p className="mb-0">info@eduverse.edu</p>
+											<p className="mb-0">hariom.21242@gmail.com</p>
+											<p className="mb-0">vikashklly@gmail.com</p>
 										</div>
 									</div>
 
 									<div className="contact-item">
 										<FaClock className="contact-icon text-success" />
 										<div>
-											<strong>Business Hours</strong>
+											<strong>Open Time</strong>
 											<p className="mb-0">
 												Monday - Friday: 8:00 AM - 6:00 PM
 												<br />
@@ -337,12 +340,14 @@ const Contact = () => {
 									<p className="mb-2">
 										<strong>Campus Security:</strong>
 										<br />
-										+1-555-SECURE (555-732-873)
+										+91(7050010897) Available 24/7
+										
+										 
 									</p>
 									<p className="mb-0">
 										<strong>Medical Emergency:</strong>
 										<br />
-										Call 911 or Campus Health: +1-555-HEALTH
+										Call 112 or Campus Health: +91(8252213697)
 									</p>
 								</Card.Body>
 							</Card>
@@ -358,7 +363,7 @@ const Contact = () => {
 						<Col>
 							<h2 className="section-title">Department Contacts</h2>
 							<p className="section-subtitle">
-								Direct contact information for specific departments and services
+								
 							</p>
 						</Col>
 					</Row>
@@ -413,7 +418,7 @@ const Contact = () => {
 								<Card.Body className="p-0">
 									<div className="map-container">
 										<iframe
-											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878459418!3d40.74844097932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1642781234567!5m2!1sen!2sus"
+											src="https://maps.app.goo.gl/moHnYhMGkKbxo6K5A"
 											width="100%"
 											height="400"
 											style={{ border: 0 }}
