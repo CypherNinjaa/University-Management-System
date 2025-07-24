@@ -1,14 +1,3 @@
-/* 
-====================================
-CONTACT PAGE COMPONENT
-====================================
-This component displays contact information and forms:
-- Contact form for inquiries
-- University address and phone numbers
-- Department-specific contact information
-- Interactive map and directions
-*/
-
 import React, { useState } from "react";
 import {
 	Container,

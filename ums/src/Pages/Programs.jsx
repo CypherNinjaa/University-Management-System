@@ -1,15 +1,3 @@
-/* 
-====================================
-PROGRAMS PAGE COMPONENT
-====================================
-This component displays all academic programs offered by the university:
-- Undergraduate Programs
-- Graduate Programs  
-- Certificate Programs
-- Online Programs
-- Program search and filtering
-*/
-
 import React, { useState } from "react";
 import {
 	Container,
@@ -193,7 +181,7 @@ const Programs = () => {
 				<Container>
 					<Row className="text-center">
 						<Col>
-							<h1 className="display-4 fw-bold">
+							<h1 className="display-4 fw-bold my-5">
 								<FaGraduationCap className="me-3" />
 								Academic Programs
 							</h1>
