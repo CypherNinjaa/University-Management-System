@@ -1,0 +1,105 @@
+/* 
+====================================
+ADMIN DASHBOARD STYLES
+====================================
+*/
+
+.admin-dashboard {
+	min-height: 100vh;
+	background-color: #f8f9fa;
+}
+
+.admin-navbar {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
+.admin-content {
+	padding: 0;
+}
+
+.admin-sidebar {
+	background-color: #ffffff;
+	min-height: calc(100vh - 80px);
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-sidebar .nav {
+	padding: 1rem 0;
+}
+
+.admin-sidebar .nav-link {
+	padding: 1rem 1.5rem;
+	color: #4b5563;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	border-left: 4px solid transparent;
+	cursor: pointer;
+}
+
+.admin-sidebar .nav-link:hover {
+	background-color: #f3f4f6;
+	color: var(--university-primary);
+	border-left-color: var(--university-primary);
+}
+
+.admin-sidebar .nav-link.active {
+	background-color: #eff6ff;
+	color: var(--university-primary);
+	border-left-color: var(--university-primary);
+	font-weight: 600;
+}
+
+.admin-sidebar hr {
+	margin: 1rem 1.5rem;
+	opacity: 0.2;
+}
+
+.admin-main-content {
+	padding: 2rem;
+}
+
+.dashboard-home h2 {
+	color: var(--university-primary);
+	font-weight: 700;
+}
+
+.dashboard-card {
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.dashboard-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.admin-sidebar {
+		min-height: auto;
+		margin-bottom: 1rem;
+	}
+
+	.admin-main-content {
+		padding: 1rem;
+	}
+
+	.admin-navbar h4 {
+		font-size: 1.2rem;
+	}
+
+	.admin-navbar .text-md-end {
+		text-align: left !important;
+		margin-top: 0.5rem;
+	}
+}

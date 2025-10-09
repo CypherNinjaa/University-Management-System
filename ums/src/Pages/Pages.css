@@ -45,20 +45,29 @@ Common styles for all page components including:
 
 .programs-page .featured-badge {
 	position: absolute;
-	top: 15px;
-	right: 15px;
+	top: 10px;
+	left: 10px;
 	z-index: 2;
 }
 
 .programs-page .featured-text {
-	font-size: 0.8rem;
-	padding: 0.4rem 0.8rem;
+	font-size: 0.75rem;
+	padding: 0.35rem 0.7rem;
+	font-weight: 600;
+}
+
+.programs-page .program-header {
+	padding-top: 10px; /* Add space for featured badge if present */
 }
 
 .programs-page .program-title {
 	color: #2c3e50;
 	font-weight: 600;
-	font-size: 1.3rem;
+	font-size: 1.25rem;
+	flex: 1;
+	min-width: 0; /* Allow text to shrink */
+	word-wrap: break-word;
+	line-height: 1.3;
 }
 
 .programs-page .program-description {
@@ -104,6 +113,8 @@ Common styles for all page components including:
 	transition: all 0.3s ease;
 	position: relative;
 	overflow: hidden;
+	height: 100%;
+	max-height: 550px; /* Limit card height */
 }
 
 .faculty-page .faculty-card:hover {
@@ -111,8 +122,21 @@ Common styles for all page components including:
 	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
+.faculty-page .featured-badge {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+}
+
+.faculty-page .featured-text {
+	font-size: 0.75rem;
+	padding: 0.35rem 0.7rem;
+	font-weight: 600;
+}
+
 .faculty-page .faculty-image-container {
-	height: 250px;
+	height: 200px; /* Reduced from 250px */
 	overflow: hidden;
 	position: relative;
 }
@@ -128,32 +152,61 @@ Common styles for all page components including:
 	transform: scale(1.05);
 }
 
+.faculty-page .faculty-header {
+	border-bottom: 1px solid #e9ecef;
+	padding-bottom: 0.5rem;
+}
+
 .faculty-page .faculty-name {
 	color: #2c3e50;
 	font-weight: 600;
-	margin-bottom: 0.5rem;
+	font-size: 1.1rem;
+	margin-bottom: 0.25rem;
+	line-height: 1.3;
 }
 
 .faculty-page .faculty-title {
 	font-weight: 500;
-	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+	margin-bottom: 0.25rem;
 }
 
 .faculty-page .department-badge {
-	font-size: 0.8rem;
+	font-size: 0.75rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.faculty-page .faculty-specialization {
+	font-size: 0.85rem;
+}
+
+.faculty-page .faculty-specialization strong {
+	color: #2c3e50;
 }
 
 .faculty-page .faculty-bio {
 	color: #6c757d;
-	line-height: 1.6;
-	font-size: 0.9rem;
+	line-height: 1.5;
+	font-size: 0.85rem;
 }
 
-.faculty-page .achievement-badge,
+.faculty-page .faculty-courses {
+	font-size: 0.85rem;
+}
+
+.faculty-page .achievement-badge {
+	font-size: 0.7rem;
+	padding: 0.25rem 0.5rem;
+}
+
 .faculty-page .course-badge {
-	font-size: 0.75rem;
-	padding: 0.3rem 0.6rem;
+	font-size: 0.7rem;
+	padding: 0.25rem 0.5rem;
 	margin: 0.1rem;
+}
+
+.faculty-page .faculty-contact-compact {
+	font-size: 0.8rem;
 }
 
 .faculty-page .contact-item {
@@ -423,6 +476,19 @@ Common styles for all page components including:
 
 	.about-page .stat-value {
 		font-size: 2rem;
+	}
+
+	/* Faculty cards on mobile */
+	.faculty-page .faculty-card {
+		max-height: none; /* Remove height restriction on mobile */
+	}
+
+	.faculty-page .faculty-image-container {
+		height: 180px; /* Slightly smaller on mobile */
+	}
+
+	.faculty-page .faculty-name {
+		font-size: 1rem;
 	}
 
 	.about-page .cta-title {

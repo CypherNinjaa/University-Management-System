@@ -1,17 +1,42 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap"; // Importing  components from react-bootstrap
-import { Link } from "react-router-dom"; // React Router for navigation
+import { Link, useNavigate, useLocation } from "react-router-dom"; // React Router for navigation
 import { FaUniversity, FaBars } from "react-icons/fa"; //this is for icons
 import "./Navbar.css"; //custom css for styling
 
 //mobile toogle
 const NavigationBar = () => {
 	const [expanded, setExpanded] = useState(false);
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	// navigation handler when a nav item is clicked
 	// This will close the mobile menu when an item is clicked
 	const handleNavClick = () => {
 		setExpanded(false);
+	};
+
+	// Handle navigation to success stories section
+	const handleSuccessStoriesClick = (e) => {
+		e.preventDefault();
+		handleNavClick();
+
+		// If already on home page, just scroll to section
+		if (location.pathname === "/") {
+			const element = document.getElementById("success-stories");
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		} else {
+			// Navigate to home page first, then scroll
+			navigate("/");
+			setTimeout(() => {
+				const element = document.getElementById("success-stories");
+				if (element) {
+					element.scrollIntoView({ behavior: "smooth" });
+				}
+			}, 100);
+		}
 	};
 
 	return (
@@ -68,7 +93,7 @@ const NavigationBar = () => {
 						</Nav.Link>
 						<Nav.Link
 							href="#success-stories"
-							onClick={handleNavClick}
+							onClick={handleSuccessStoriesClick}
 							className="nav-item"
 						>
 							Student Success Stories
@@ -96,7 +121,8 @@ const NavigationBar = () => {
 						<Button
 							variant="outline-light"
 							className="login-btn"
-							onClick={() => alert("Login functionality to be implemented")}
+							as={Link}
+							to="/admin/login"
 						>
 							Login
 						</Button>

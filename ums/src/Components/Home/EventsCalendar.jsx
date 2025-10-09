@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	Container,
 	Row,
@@ -7,6 +7,8 @@ import {
 	Button,
 	Badge,
 	Carousel,
+	Spinner,
+	Alert,
 } from "react-bootstrap";
 import {
 	FaCalendarAlt,
@@ -17,52 +19,41 @@ import {
 	FaChevronLeft,
 	FaChevronRight,
 } from "react-icons/fa";
+import { eventAPI } from "../../services/api";
 import "./EventsCalendar.css";
 
 const EventsCalendar = () => {
-	// Sample events data - in real app, this would come from an API
-	const [events] = useState([
-		{
-			id: 1,
-			title: "Orientation Day 2025",
-			date: "2025-08-15",
-			time: "09:00 AM",
-			location: "Main Auditorium",
-			category: "Academic",
-			attendees: 500,
-			description: "Welcome new students and introduce them to university life",
-		},
-		{
-			id: 2,
-			title: "Research Symposium",
-			date: "2025-08-20",
-			time: "02:00 PM",
-			location: "Science Building",
-			category: "Research",
-			attendees: 200,
-			description: "Annual research presentation by faculty and students",
-		},
-		{
-			id: 3,
-			title: "Career Fair 2025",
-			date: "2025-08-25",
-			time: "10:00 AM",
-			location: "Exhibition Hall",
-			category: "Career",
-			attendees: 1000,
-			description: "Meet with top employers and explore career opportunities",
-		},
-		{
-			id: 4,
-			title: "Cultural Festival",
-			date: "2025-09-01",
-			time: "06:00 PM",
-			location: "Campus Grounds",
-			category: "Cultural",
-			attendees: 800,
-			description: "Celebrate diversity with music, dance, and food",
-		},
-	]);
+	const [events, setEvents] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState("");
+
+	// Fetch events from API
+	useEffect(() => {
+		const fetchEvents = async () => {
+			try {
+				setLoading(true);
+				const response = await eventAPI.getAll();
+				if (response.data.success) {
+					// Filter only upcoming and ongoing events, sort by date
+					const upcomingEvents = response.data.data
+						.filter(
+							(event) =>
+								event.status === "Upcoming" || event.status === "Ongoing"
+						)
+						.sort((a, b) => new Date(a.event_date) - new Date(b.event_date))
+						.slice(0, 4); // Show only 4 most recent events
+					setEvents(upcomingEvents);
+				}
+			} catch (err) {
+				console.error("Error fetching events:", err);
+				setError("Failed to load events. Please try again later.");
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchEvents();
+	}, []);
 
 	// Sample gallery images - in real app, these would be actual event photos
 	const [galleryImages] = useState([
@@ -112,8 +103,40 @@ const EventsCalendar = () => {
 			Research: "success",
 			Career: "warning",
 			Cultural: "info",
+			Technical: "danger",
+			Sports: "success",
+			Social: "info",
+			Workshop: "warning",
+			Seminar: "primary",
 		};
 		return colors[category] || "secondary";
+	};
+
+	// Format date for display
+	const formatEventDate = (dateString) => {
+		if (!dateString) return "Date TBA";
+		const date = new Date(dateString);
+		return date.toLocaleDateString("en-US", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
+	};
+
+	// Format time for display
+	const formatEventTime = (timeString) => {
+		if (!timeString) return "Time TBA";
+		// If time is in HH:MM:SS format, convert to 12-hour format
+		const timeParts = timeString.split(":");
+		if (timeParts.length >= 2) {
+			let hours = parseInt(timeParts[0]);
+			const minutes = timeParts[1];
+			const ampm = hours >= 12 ? "PM" : "AM";
+			hours = hours % 12 || 12;
+			return `${hours}:${minutes} ${ampm}`;
+		}
+		return timeString;
 	};
 
 	return (
@@ -136,75 +159,105 @@ const EventsCalendar = () => {
 				<Row>
 					{/* Events List - Left Side */}
 					<Col lg={8} className="mb-4">
-						{events.map((event) => (
-							<Card key={event.id} className="event-card mb-3">
-								<Card.Body>
-									<Row>
-										<Col md={8}>
-											{/* Event Title and Category */}
-											<div className="d-flex align-items-center mb-2">
-												<h5 className="event-title mb-0 me-3">{event.title}</h5>
-												<Badge bg={getCategoryColor(event.category)}>
-													{event.category}
-												</Badge>
-											</div>
+						{/* Loading State */}
+						{loading && (
+							<div className="text-center py-5">
+								<Spinner animation="border" variant="primary" />
+								<p className="mt-3 text-muted">Loading events...</p>
+							</div>
+						)}
 
-											{/* Event Description */}
-											<p className="event-description text-muted mb-3">
-												{event.description}
-											</p>
+						{/* Error State */}
+						{error && (
+							<Alert variant="danger" className="text-center">
+								{error}
+							</Alert>
+						)}
 
-											{/* Event Details */}
-											<div className="event-details">
-												<div className="detail-item">
-													<FaCalendarAlt className="detail-icon" />
-													<span>
-														{new Date(event.date).toLocaleDateString("en-US", {
-															weekday: "long",
-															year: "numeric",
-															month: "long",
-															day: "numeric",
-														})}
-													</span>
+						{/* No Events State */}
+						{!loading && !error && events.length === 0 && (
+							<Alert variant="info" className="text-center">
+								<FaCalendarAlt className="mb-2" size={40} />
+								<p className="mb-0">
+									No upcoming events at the moment. Check back soon!
+								</p>
+							</Alert>
+						)}
+
+						{/* Events Display */}
+						{!loading &&
+							!error &&
+							events.length > 0 &&
+							events.map((event) => (
+								<Card key={event.id} className="event-card mb-3">
+									<Card.Body>
+										<Row>
+											<Col md={8}>
+												{/* Event Title and Category */}
+												<div className="d-flex align-items-center mb-2">
+													<h5 className="event-title mb-0 me-3">
+														{event.event_name}
+													</h5>
+													<Badge bg={getCategoryColor(event.category)}>
+														{event.category}
+													</Badge>
 												</div>
 
-												<div className="detail-item">
-													<FaClock className="detail-icon" />
-													<span>{event.time}</span>
-												</div>
+												{/* Event Description */}
+												<p className="event-description text-muted mb-3">
+													{event.description || "No description available"}
+												</p>
 
-												<div className="detail-item">
-													<FaMapMarkerAlt className="detail-icon" />
-													<span>{event.location}</span>
-												</div>
+												{/* Event Details */}
+												<div className="event-details">
+													<div className="detail-item">
+														<FaCalendarAlt className="detail-icon" />
+														<span>{formatEventDate(event.event_date)}</span>
+													</div>
 
-												<div className="detail-item">
-													<FaUsers className="detail-icon" />
-													<span>{event.attendees} Expected Attendees</span>
-												</div>
-											</div>
-										</Col>
+													<div className="detail-item">
+														<FaClock className="detail-icon" />
+														<span>{formatEventTime(event.event_time)}</span>
+													</div>
 
-										<Col
-											md={4}
-											className="d-flex align-items-center justify-content-end"
-										>
-											<Button
-												variant="primary"
-												className="register-btn"
-												onClick={() =>
-													alert(
-														`Registration for ${event.title} - Coming Soon!`
-													)
-												}
+													<div className="detail-item">
+														<FaMapMarkerAlt className="detail-icon" />
+														<span>{event.location || "Location TBA"}</span>
+													</div>
+
+													<div className="detail-item">
+														<FaUsers className="detail-icon" />
+														<span>
+															{event.expected_attendees || event.max_attendees}{" "}
+															Expected Attendees
+														</span>
+													</div>
+												</div>
+											</Col>
+
+											<Col
+												md={4}
+												className="d-flex align-items-center justify-content-end"
 											>
-												Register Now
-											</Button>
-										</Col>
-									</Row>
-								</Card.Body>
-							</Card>
-						))}
+												<Button
+													variant="primary"
+													className="register-btn"
+													disabled={event.registration_required === "No"}
+													onClick={() =>
+														alert(
+															`Registration for ${event.event_name} - Coming Soon!`
+														)
+													}
+												>
+													{event.registration_required === "No"
+														? "Open Event"
+														: "Register Now"}
+												</Button>
+											</Col>
+										</Row>
+									</Card.Body>
+								</Card>
+							))}
 					</Col>
 
 					{/* Gallery Carousel - Right Side */}

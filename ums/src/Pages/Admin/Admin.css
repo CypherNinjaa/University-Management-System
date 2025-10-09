@@ -1,0 +1,187 @@
+/* =========================
+   ADMIN PANEL SHARED STYLES
+   ========================= */
+
+/* Admin container */
+.admin-container {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Student, Teacher, Course Management */
+.student-management,
+.teacher-management,
+.course-management {
+	padding: 2rem;
+	animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Card hover effects */
+.student-management .card,
+.teacher-management .card,
+.course-management .card {
+	border: none;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-management .card:hover,
+.teacher-management .card:hover,
+.course-management .card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Table styling */
+.student-management table,
+.teacher-management table,
+.course-management table {
+	font-size: 0.95rem;
+}
+
+.student-management table th,
+.teacher-management table th,
+.course-management table th {
+	background-color: #f8f9fa;
+	font-weight: 600;
+	color: var(--university-primary);
+	border-bottom: 2px solid var(--university-secondary);
+}
+
+.student-management table tbody tr,
+.teacher-management table tbody tr,
+.course-management table tbody tr {
+	transition: background-color 0.2s ease;
+}
+
+.student-management table tbody tr:hover,
+.teacher-management table tbody tr:hover,
+.course-management table tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+/* Button styling */
+.student-management .btn,
+.teacher-management .btn,
+.course-management .btn {
+	border-radius: 25px;
+	padding: 0.5rem 1.5rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.student-management .btn-primary,
+.teacher-management .btn-primary,
+.course-management .btn-primary {
+	background: linear-gradient(
+		135deg,
+		var(--university-primary),
+		var(--university-secondary)
+	);
+	border: none;
+}
+
+.student-management .btn-primary:hover,
+.teacher-management .btn-primary:hover,
+.course-management .btn-primary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+/* Modal styling */
+.student-management .modal-content,
+.teacher-management .modal-content,
+.course-management .modal-content {
+	border-radius: 15px;
+	border: none;
+}
+
+.student-management .modal-header,
+.teacher-management .modal-header,
+.course-management .modal-header {
+	background: linear-gradient(
+		135deg,
+		var(--university-primary),
+		var(--university-secondary)
+	);
+	color: white;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.student-management .modal-header .btn-close,
+.teacher-management .modal-header .btn-close,
+.course-management .modal-header .btn-close {
+	filter: brightness(0) invert(1);
+}
+
+/* Form controls */
+.student-management .form-control,
+.teacher-management .form-control,
+.course-management .form-control,
+.student-management .form-select,
+.teacher-management .form-select,
+.course-management .form-select {
+	border-radius: 10px;
+	border: 1px solid #dee2e6;
+	padding: 0.75rem;
+}
+
+.student-management .form-control:focus,
+.teacher-management .form-control:focus,
+.course-management .form-control:focus,
+.student-management .form-select:focus,
+.teacher-management .form-select:focus,
+.course-management .form-select:focus {
+	border-color: var(--university-secondary);
+	box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+/* Search input */
+.student-management .input-group,
+.teacher-management .input-group,
+.course-management .input-group {
+	border-radius: 25px;
+	overflow: hidden;
+}
+
+/* Badge styling */
+.student-management .badge,
+.teacher-management .badge,
+.course-management .badge {
+	padding: 0.5rem 1rem;
+	font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.student-management,
+	.teacher-management,
+	.course-management {
+		padding: 1rem;
+	}
+
+	.student-management table,
+	.teacher-management table,
+	.course-management table {
+		font-size: 0.85rem;
+	}
+
+	.student-management .btn,
+	.teacher-management .btn,
+	.course-management .btn {
+		padding: 0.4rem 1rem;
+		font-size: 0.9rem;
+	}
+}

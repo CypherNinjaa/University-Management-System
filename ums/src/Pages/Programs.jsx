@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Container,
 	Row,
@@ -8,6 +8,8 @@ import {
 	Badge,
 	Form,
 	InputGroup,
+	Spinner,
+	Alert,
 } from "react-bootstrap";
 import {
 	FaGraduationCap,
@@ -16,131 +18,62 @@ import {
 	FaUsers,
 	FaStar,
 	FaBookOpen,
+	FaChalkboardTeacher,
 } from "react-icons/fa";
+import { courseAPI } from "../services/api";
 import "./Pages.css";
 
 const Programs = () => {
-	// Sample programs data - in real app, this would come from an API
-	const [programs] = useState([
-		{
-			id: 1,
-			title: "Computer Science",
-			level: "Bachelor's",
-			duration: "4 years",
-			category: "Technology",
-			description:
-				"Comprehensive program covering software development, algorithms, data structures, and emerging technologies.",
-			features: [
-				"AI & Machine Learning",
-				"Software Engineering",
-				"Cybersecurity",
-				"Data Science",
-			],
-			tuition: "$25,000/year",
-			rating: 4.8,
-			students: 1200,
-			featured: true,
-		},
-		{
-			id: 2,
-			title: "Business Administration",
-			level: "Master's",
-			duration: "2 years",
-			category: "Business",
-			description:
-				"Advanced business program focusing on leadership, strategy, and global business practices.",
-			features: [
-				"Strategic Management",
-				"Financial Analysis",
-				"Marketing",
-				"Operations",
-			],
-			tuition: "$35,000/year",
-			rating: 4.7,
-			students: 800,
-			featured: true,
-		},
-		{
-			id: 3,
-			title: "Biomedical Engineering",
-			level: "Bachelor's",
-			duration: "4 years",
-			category: "Engineering",
-			description:
-				"Interdisciplinary program combining engineering principles with biological sciences.",
-			features: [
-				"Medical Devices",
-				"Biomaterials",
-				"Tissue Engineering",
-				"Bioinformatics",
-			],
-			tuition: "$28,000/year",
-			rating: 4.6,
-			students: 450,
-			featured: false,
-		},
-		{
-			id: 4,
-			title: "International Relations",
-			level: "Bachelor's",
-			duration: "4 years",
-			category: "Liberal Arts",
-			description:
-				"Study global politics, diplomacy, and international cooperation in our interconnected world.",
-			features: [
-				"Global Politics",
-				"Diplomatic Studies",
-				"International Law",
-				"Cultural Studies",
-			],
-			tuition: "$22,000/year",
-			rating: 4.5,
-			students: 600,
-			featured: false,
-		},
-		{
-			id: 5,
-			title: "Data Science",
-			level: "Master's",
-			duration: "1.5 years",
-			category: "Technology",
-			description:
-				"Advanced program in data analysis, machine learning, and statistical modeling.",
-			features: [
-				"Big Data Analytics",
-				"Machine Learning",
-				"Statistical Modeling",
-				"Data Visualization",
-			],
-			tuition: "$32,000/year",
-			rating: 4.9,
-			students: 300,
-			featured: true,
-		},
-		{
-			id: 6,
-			title: "Environmental Science",
-			level: "Bachelor's",
-			duration: "4 years",
-			category: "Science",
-			description:
-				"Comprehensive study of environmental systems and sustainability practices.",
-			features: [
-				"Climate Science",
-				"Conservation Biology",
-				"Environmental Policy",
-				"Sustainability",
-			],
-			tuition: "$24,000/year",
-			rating: 4.4,
-			students: 350,
-			featured: false,
-		},
-	]);
-
+	const [programs, setPrograms] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState("");
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategory, setSelectedCategory] = useState("All");
 	const [selectedLevel, setSelectedLevel] = useState("All");
+
+	// Fetch courses from API
+	useEffect(() => {
+		const fetchPrograms = async () => {
+			try {
+				setLoading(true);
+				const response = await courseAPI.getAll();
+				if (response.data.success) {
+					// Transform course data to match program format
+					const transformedPrograms = response.data.data
+						.filter((course) => course.status === "Active") // Only show active courses
+						.map((course) => ({
+							id: course.id,
+							title: course.course_name,
+							level: course.semester || "Undergraduate", // Use semester or default
+							duration: course.duration || "Variable",
+							category: course.department || "General",
+							description: course.description || "No description available",
+							features: course.description
+								? course.description
+										.split(".")
+										.filter((s) => s.trim().length > 0)
+										.slice(0, 4)
+								: ["Course content available upon enrollment"],
+							tuition: "Contact admissions",
+							rating: 4.5, // Default rating (could be calculated from reviews in future)
+							students: course.max_students || 0,
+							credits: course.credits,
+							teacher_name: course.teacher_name || "TBA",
+							course_code: course.course_code,
+							featured: course.credits >= 4, // Featured if 4+ credits
+						}));
+					setPrograms(transformedPrograms);
+				}
+			} catch (err) {
+				console.error("Error fetching programs:", err);
+				setError("Failed to load programs. Please try again later.");
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchPrograms();
+	}, []);
 
 	// Get unique categories and levels for filters
 	const categories = [
@@ -242,97 +175,156 @@ const Programs = () => {
 			{/* Programs Grid */}
 			<section className="py-5">
 				<Container>
-					<Row>
-						{filteredPrograms.map((program) => (
-							<Col lg={4} md={6} className="mb-4" key={program.id}>
-								<Card className="program-card h-100">
-									{program.featured && (
-										<div className="featured-badge">
-											<Badge bg="warning" className="featured-text">
-												<FaStar className="me-1" />
-												Featured
-											</Badge>
-										</div>
-									)}
+					{/* Loading State */}
+					{loading && (
+						<div className="text-center py-5">
+							<Spinner animation="border" variant="primary" size="lg" />
+							<p className="mt-3 text-muted">Loading programs...</p>
+						</div>
+					)}
 
-									<Card.Body className="d-flex flex-column">
-										<div className="program-header mb-3">
-											<div className="d-flex justify-content-between align-items-start mb-2">
-												<h5 className="program-title">{program.title}</h5>
-												<Badge bg={getCategoryColor(program.category)}>
-													{program.category}
+					{/* Error State */}
+					{error && (
+						<Alert variant="danger" className="text-center">
+							<h5>Oops! Something went wrong</h5>
+							<p className="mb-0">{error}</p>
+						</Alert>
+					)}
+
+					{/* No Programs State */}
+					{!loading && !error && programs.length === 0 && (
+						<Alert variant="info" className="text-center">
+							<FaGraduationCap size={50} className="mb-3" />
+							<h5>No programs available</h5>
+							<p className="mb-0">
+								Please check back later or contact admissions for more
+								information.
+							</p>
+						</Alert>
+					)}
+
+					{/* Programs Display */}
+					{!loading && !error && programs.length > 0 && (
+						<Row>
+							{filteredPrograms.map((program) => (
+								<Col lg={4} md={6} className="mb-4" key={program.id}>
+									<Card className="program-card h-100">
+										{program.featured && (
+											<div className="featured-badge">
+												<Badge bg="warning" className="featured-text">
+													<FaStar className="me-1" />
+													Featured
 												</Badge>
 											</div>
-											<div className="d-flex align-items-center text-muted mb-2">
-												<FaGraduationCap className="me-2" />
-												<span>{program.level}</span>
-												<FaClock className="ms-3 me-2" />
-												<span>{program.duration}</span>
-											</div>
-										</div>
+										)}
 
-										<p className="program-description">{program.description}</p>
-
-										<div className="program-features mb-3">
-											<h6 className="mb-2">Key Areas:</h6>
-											<div className="d-flex flex-wrap gap-1">
-												{program.features.map((feature, index) => (
+										<Card.Body className="d-flex flex-column">
+											<div className="program-header mb-3">
+												<div className="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+													<h5 className="program-title mb-0">
+														{program.title}
+													</h5>
 													<Badge
-														key={index}
-														bg="light"
-														text="dark"
-														className="feature-badge"
+														bg={getCategoryColor(program.category)}
+														className="flex-shrink-0"
 													>
-														{feature}
+														{program.category}
 													</Badge>
-												))}
-											</div>
-										</div>
-
-										<div className="program-stats mb-3">
-											<Row className="text-center">
-												<Col>
-													<div className="stat">
-														<FaUsers className="text-primary" />
-														<div className="stat-value">{program.students}</div>
-														<div className="stat-label">Students</div>
+												</div>
+												<div className="d-flex align-items-center text-muted mb-2">
+													<FaGraduationCap className="me-2" />
+													<span>{program.level}</span>
+													<FaClock className="ms-3 me-2" />
+													<span>{program.duration}</span>
+												</div>
+												{program.course_code && (
+													<div className="text-muted small">
+														<strong>Course Code:</strong> {program.course_code}
 													</div>
-												</Col>
-												<Col>
-													<div className="stat">
-														<FaStar className="text-warning" />
-														<div className="stat-value">{program.rating}</div>
-														<div className="stat-label">Rating</div>
-													</div>
-												</Col>
-											</Row>
-										</div>
-
-										<div className="mt-auto">
-											<div className="d-flex justify-content-between align-items-center mb-3">
-												<span className="tuition-cost fw-bold text-primary">
-													{program.tuition}
-												</span>
+												)}
+												{program.teacher_name &&
+													program.teacher_name !== "TBA" && (
+														<div className="text-muted small">
+															<FaChalkboardTeacher className="me-1" />
+															{program.teacher_name}
+														</div>
+													)}
 											</div>
-											<Button variant="primary" className="w-100">
-												<FaBookOpen className="me-2" />
-												Learn More
-											</Button>
-										</div>
-									</Card.Body>
-								</Card>
-							</Col>
-						))}
-					</Row>
 
-					{filteredPrograms.length === 0 && (
-						<Row>
-							<Col className="text-center py-5">
-								<h4>No programs found</h4>
-								<p className="text-muted">Try adjusting your search criteria</p>
-							</Col>
+											<p className="program-description">
+												{program.description}
+											</p>
+
+											<div className="program-features mb-3">
+												<h6 className="mb-2">Key Areas:</h6>
+												<div className="d-flex flex-wrap gap-1">
+													{program.features.map((feature, index) => (
+														<Badge
+															key={index}
+															bg="light"
+															text="dark"
+															className="feature-badge"
+														>
+															{feature}
+														</Badge>
+													))}
+												</div>
+											</div>
+
+											<div className="program-stats mb-3">
+												<Row className="text-center">
+													<Col>
+														<div className="stat">
+															<FaUsers className="text-primary" />
+															<div className="stat-value">
+																{program.students}
+															</div>
+															<div className="stat-label">Max Students</div>
+														</div>
+													</Col>
+													<Col>
+														<div className="stat">
+															<FaBookOpen className="text-success" />
+															<div className="stat-value">
+																{program.credits}
+															</div>
+															<div className="stat-label">Credits</div>
+														</div>
+													</Col>
+												</Row>
+											</div>
+
+											<div className="mt-auto">
+												<div className="d-flex justify-content-between align-items-center mb-3">
+													<span className="tuition-cost fw-bold text-primary">
+														{program.tuition}
+													</span>
+												</div>
+												<Button variant="primary" className="w-100">
+													<FaBookOpen className="me-2" />
+													Learn More
+												</Button>
+											</div>
+										</Card.Body>
+									</Card>
+								</Col>
+							))}
 						</Row>
 					)}
+
+					{!loading &&
+						!error &&
+						programs.length > 0 &&
+						filteredPrograms.length === 0 && (
+							<Row>
+								<Col className="text-center py-5">
+									<h4>No programs found</h4>
+									<p className="text-muted">
+										Try adjusting your search criteria
+									</p>
+								</Col>
+							</Row>
+						)}
 				</Container>
 			</section>
 		</div>
